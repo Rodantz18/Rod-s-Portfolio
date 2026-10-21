@@ -1,0 +1,498 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Rodrigo Antolinez Guzman · Economics</title>
+  <meta name="description" content="Economics portfolio of Rodrigo Antolinez Guzman: research, data projects, and writing.">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+  <style>
+    /* ============================================================
+       THEME — change colors here and the whole page follows.
+       ============================================================ */
+    :root {
+      --paper:   #f6f3ec;
+      --surface: #fffdf8;
+      --ink:     #1c1f1d;
+      --muted:   #5f655f;
+      --rule:    #dcd6c8;
+      --accent:  #1f5c47;   /* ledger green */
+      --accent-soft: #e3ece6;
+      --serif: "Newsreader", Georgia, serif;
+      --sans:  "IBM Plex Sans", system-ui, sans-serif;
+      --mono:  "IBM Plex Mono", ui-monospace, monospace;
+      --max: 1040px;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --paper:   #131614;
+        --surface: #1a1e1b;
+        --ink:     #ebe7dd;
+        --muted:   #9aa198;
+        --rule:    #2e342f;
+        --accent:  #7cc4a4;
+        --accent-soft: #1f2d26;
+      }
+    }
+
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: 72px; }
+    body {
+      margin: 0;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: var(--sans);
+      font-size: 17px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: var(--accent); text-underline-offset: 3px; }
+    a:hover { text-decoration-thickness: 2px; }
+    img { max-width: 100%; display: block; }
+    .wrap { max-width: var(--max); margin: 0 auto; padding: 0 24px; }
+
+    /* Placeholder text — delete the class once you fill something in */
+    .ph { color: var(--muted); font-style: italic; }
+
+    /* ---------- Nav ---------- */
+    header.nav {
+      position: sticky; top: 0; z-index: 10;
+      background: color-mix(in srgb, var(--paper) 88%, transparent);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--rule);
+    }
+    header.nav .wrap {
+      display: flex; align-items: center; justify-content: space-between;
+      height: 60px; gap: 16px;
+    }
+    .brand { font-family: var(--serif); font-size: 20px; font-weight: 600; color: var(--ink); text-decoration: none; }
+    .brand span { color: var(--accent); }
+    nav ul { list-style: none; display: flex; gap: 22px; margin: 0; padding: 0; }
+    nav a { color: var(--muted); text-decoration: none; font-size: 14px; font-weight: 500; }
+    nav a:hover { color: var(--ink); }
+    .menu-btn { display: none; background: none; border: 1px solid var(--rule); color: var(--ink);
+      border-radius: 6px; padding: 6px 10px; font: 500 14px var(--sans); cursor: pointer; }
+
+    /* ---------- Hero ---------- */
+    .hero { padding: 96px 0 72px; border-bottom: 1px solid var(--rule); }
+    .eyebrow { font-family: var(--mono); font-size: 13px; letter-spacing: .08em; text-transform: uppercase; color: var(--accent); margin: 0 0 18px; }
+    .hero h1 {
+      font-family: var(--serif); font-weight: 500;
+      font-size: clamp(40px, 7vw, 72px); line-height: 1.05; letter-spacing: -0.02em;
+      margin: 0 0 24px;
+    }
+    .hero p.lede { font-family: var(--serif); font-size: clamp(19px, 2.4vw, 23px); line-height: 1.5; max-width: 640px; margin: 0 0 36px; color: var(--muted); }
+    .btns { display: flex; flex-wrap: wrap; gap: 12px; }
+    .btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 11px 20px; border-radius: 6px; font-weight: 500; font-size: 15px;
+      text-decoration: none; border: 1px solid var(--accent);
+    }
+    .btn.primary { background: var(--accent); color: var(--paper); }
+    .btn.ghost { color: var(--accent); }
+    .btn:hover { text-decoration: none; filter: brightness(1.08); }
+
+    .stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; margin-top: 64px; border-top: 1px solid var(--rule); }
+    .stat { padding: 20px 20px 0 0; }
+    .stat + .stat { padding-left: 20px; border-left: 1px solid var(--rule); }
+    .stat b { display: block; font-family: var(--serif); font-size: 32px; font-weight: 500; }
+    .stat span { font-family: var(--mono); font-size: 12px; color: var(--muted); text-transform: uppercase; letter-spacing: .06em; }
+
+    /* ---------- Sections ---------- */
+    section { padding: 80px 0; border-bottom: 1px solid var(--rule); }
+    .sec-head { display: grid; grid-template-columns: 200px 1fr; gap: 32px; margin-bottom: 40px; }
+    .sec-num { font-family: var(--mono); font-size: 13px; color: var(--accent); padding-top: 10px; }
+    .sec-head h2 { font-family: var(--serif); font-weight: 500; font-size: clamp(30px, 4vw, 40px); line-height: 1.15; margin: 0; letter-spacing: -0.01em; }
+    .sec-body { margin-left: 232px; }
+
+    /* About */
+    .about-grid { display: grid; grid-template-columns: 1.6fr 1fr; gap: 48px; }
+    .about-grid p { margin: 0 0 16px; }
+    .facts { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--rule); }
+    .facts li { display: flex; justify-content: space-between; gap: 16px; padding: 12px 0; border-bottom: 1px solid var(--rule); font-size: 15px; }
+    .facts li span:first-child { font-family: var(--mono); font-size: 12px; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); padding-top: 3px; }
+    .facts li span:last-child { text-align: right; }
+
+    /* Projects */
+    .projects { display: grid; gap: 20px; }
+    .project {
+      display: grid; grid-template-columns: 1fr 260px; gap: 32px;
+      background: var(--surface); border: 1px solid var(--rule); border-radius: 10px; padding: 28px;
+    }
+    .project .meta { font-family: var(--mono); font-size: 12px; color: var(--muted); text-transform: uppercase; letter-spacing: .06em; margin: 0 0 8px; }
+    .project h3 { font-family: var(--serif); font-weight: 500; font-size: 25px; line-height: 1.25; margin: 0 0 12px; }
+    .project p { margin: 0 0 16px; color: var(--muted); }
+    .project dl { margin: 0 0 18px; display: grid; grid-template-columns: auto 1fr; gap: 6px 14px; font-size: 15px; }
+    .project dt { font-weight: 600; }
+    .project dd { margin: 0; color: var(--muted); }
+    .tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 18px; }
+    .tag { font-family: var(--mono); font-size: 12px; padding: 3px 9px; border-radius: 999px; background: var(--accent-soft); color: var(--accent); }
+    .links { display: flex; flex-wrap: wrap; gap: 16px; font-size: 15px; font-weight: 500; }
+    .figure {
+      border: 1px dashed var(--rule); border-radius: 8px; min-height: 180px;
+      display: flex; align-items: center; justify-content: center; text-align: center; padding: 16px;
+      color: var(--muted); font-family: var(--mono); font-size: 12px; background: var(--paper);
+    }
+    .figure svg { width: 100%; height: auto; }
+
+    /* Writing */
+    .writing { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--rule); }
+    .writing li { display: grid; grid-template-columns: 110px 1fr auto; gap: 24px; align-items: baseline; padding: 20px 0; border-bottom: 1px solid var(--rule); }
+    .writing .yr { font-family: var(--mono); font-size: 13px; color: var(--muted); }
+    .writing .t { font-family: var(--serif); font-size: 20px; }
+    .writing .t small { display: block; font-family: var(--sans); font-size: 14px; color: var(--muted); margin-top: 4px; }
+    .writing .kind { font-family: var(--mono); font-size: 12px; text-transform: uppercase; letter-spacing: .06em; color: var(--accent); }
+
+    /* Skills */
+    .skills { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+    .skill-col { background: var(--surface); border: 1px solid var(--rule); border-radius: 10px; padding: 24px; }
+    .skill-col h3 { font-family: var(--mono); font-size: 13px; text-transform: uppercase; letter-spacing: .08em; color: var(--accent); font-weight: 500; margin: 0 0 14px; }
+    .skill-col ul { margin: 0; padding-left: 18px; }
+    .skill-col li { margin-bottom: 6px; }
+
+    /* Experience / education timeline */
+    .timeline { list-style: none; margin: 0; padding: 0; }
+    .timeline li { display: grid; grid-template-columns: 160px 1fr; gap: 24px; padding: 20px 0; border-top: 1px solid var(--rule); }
+    .timeline .when { font-family: var(--mono); font-size: 13px; color: var(--muted); padding-top: 4px; }
+    .timeline h4 { margin: 0 0 4px; font-size: 18px; font-weight: 600; }
+    .timeline .where { color: var(--accent); font-size: 15px; margin: 0 0 8px; }
+    .timeline p { margin: 0; color: var(--muted); }
+
+    /* Contact */
+    .contact { text-align: left; }
+    .contact h2 { font-family: var(--serif); font-weight: 500; font-size: clamp(32px, 5vw, 48px); margin: 0 0 16px; letter-spacing: -0.01em; }
+    .contact p { color: var(--muted); max-width: 560px; margin: 0 0 28px; }
+    .contact-links { display: flex; flex-wrap: wrap; gap: 12px; }
+
+    footer { padding: 32px 0 48px; font-size: 14px; color: var(--muted); }
+    footer .wrap { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px; }
+
+    /* ---------- Responsive ---------- */
+    @media (max-width: 860px) {
+      .sec-head { grid-template-columns: 1fr; gap: 8px; }
+      .sec-num { padding-top: 0; }
+      .sec-body { margin-left: 0; }
+      .about-grid, .project { grid-template-columns: 1fr; }
+      .skills { grid-template-columns: 1fr; }
+      .writing li { grid-template-columns: 1fr; gap: 4px; }
+      .timeline li { grid-template-columns: 1fr; gap: 4px; }
+    }
+    @media (max-width: 720px) {
+      body { font-size: 16px; }
+      .wrap { padding: 0 16px; }
+      .menu-btn { display: block; }
+      nav ul {
+        display: none; position: absolute; top: 60px; left: 0; right: 0;
+        flex-direction: column; gap: 0; background: var(--paper); border-bottom: 1px solid var(--rule);
+      }
+      nav ul.open { display: flex; }
+      nav ul a { display: block; padding: 14px 16px; border-top: 1px solid var(--rule); }
+      .hero { padding: 64px 0 48px; }
+      .stats { grid-template-columns: 1fr; }
+      .stat + .stat { border-left: 0; padding-left: 0; border-top: 1px solid var(--rule); }
+      .stat { padding: 16px 0; }
+      section { padding: 56px 0; }
+      .project { padding: 20px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ===================== NAV ===================== -->
+  <header class="nav">
+    <div class="wrap">
+      <a class="brand" href="#top">Rodrigo<span>.</span></a>
+      <nav>
+        <button class="menu-btn" aria-expanded="false" aria-controls="nav-list">Menu</button>
+        <ul id="nav-list">
+          <li><a href="#about">About</a></li>
+          <li><a href="#research">Research</a></li>
+          <li><a href="#writing">Writing</a></li>
+          <li><a href="#skills">Skills</a></li>
+          <li><a href="#experience">Experience</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top">
+
+    <!-- ===================== HERO ===================== -->
+    <div class="hero">
+      <div class="wrap">
+        <p class="eyebrow">Economics · Data · Policy</p>
+        <h1>Rodrigo Antolinez Guzman</h1>
+        <p class="lede"><span class="ph">One or two sentences on what you study and why. Example: "M.A. Economics student using applied econometrics to study how local markets respond to demand shocks."</span></p>
+        <div class="btns">
+          <a class="btn primary" href="#research">View research</a>
+          <!-- Upload your CV PDF to the repo (e.g. cv.pdf) and it will open here -->
+          <a class="btn ghost" href="cv.pdf" target="_blank" rel="noopener">Download CV</a>
+        </div>
+
+        <!-- Headline numbers. Swap for whatever you want to highlight, or delete this block. -->
+        <div class="stats">
+          <div class="stat"><b>0</b><span>Research projects</span></div>
+          <div class="stat"><b>0</b><span>Datasets built</span></div>
+          <div class="stat"><b>M.A.</b><span>Economics, in progress</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===================== 01 ABOUT ===================== -->
+    <section id="about">
+      <div class="wrap">
+        <div class="sec-head">
+          <div class="sec-num">01 / About</div>
+          <h2>About me</h2>
+        </div>
+        <div class="sec-body about-grid">
+          <div>
+            <p class="ph">Paragraph 1: Who you are and your academic path. Where you studied, what drew you to economics.</p>
+            <p class="ph">Paragraph 2: Your research interests and the kinds of questions you like to answer with data.</p>
+            <p class="ph">Paragraph 3: What you're looking for next (RA positions, PhD programs, analyst roles, etc.).</p>
+          </div>
+          <ul class="facts">
+            <li><span>Program</span><span class="ph">M.A. Economics, [University]</span></li>
+            <li><span>Undergrad</span><span class="ph">B.A./B.S. Economics, [University]</span></li>
+            <li><span>Fields</span><span class="ph">[e.g. Applied micro, IO]</span></li>
+            <li><span>Based in</span><span class="ph">[City, State]</span></li>
+            <li><span>Languages</span><span class="ph">[e.g. English, Spanish]</span></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== 02 RESEARCH ===================== -->
+    <section id="research">
+      <div class="wrap">
+        <div class="sec-head">
+          <div class="sec-num">02 / Research</div>
+          <h2>Research &amp; data projects</h2>
+        </div>
+        <div class="sec-body projects">
+
+          <!-- PROJECT CARD — copy this whole <article> block to add another project -->
+          <article class="project">
+            <div>
+              <p class="meta">Working paper · 2026</p>
+              <h3 class="ph">Project title</h3>
+              <p class="ph">Two to three sentences: the question, why it matters, and what you found (or expect to find).</p>
+              <dl>
+                <dt>Question</dt><dd class="ph">What causal or descriptive question are you answering?</dd>
+                <dt>Data</dt><dd class="ph">Source, sample, time period.</dd>
+                <dt>Method</dt><dd class="ph">e.g. Difference-in-differences, panel FE, event study.</dd>
+                <dt>Finding</dt><dd class="ph">One-line headline result.</dd>
+              </dl>
+              <div class="tags">
+                <span class="tag">Stata</span>
+                <span class="tag">R</span>
+                <span class="tag">Applied micro</span>
+              </div>
+              <div class="links">
+                <a href="#">Paper (PDF) →</a>
+                <a href="#">Code →</a>
+                <a href="#">Data →</a>
+              </div>
+            </div>
+            <!-- Replace with <img src="images/fig1.png" alt="..."> once you have a chart -->
+            <div class="figure">
+              <svg viewBox="0 0 220 140" aria-hidden="true">
+                <line x1="20" y1="120" x2="210" y2="120" stroke="currentColor" stroke-opacity=".35"/>
+                <line x1="20" y1="10"  x2="20"  y2="120" stroke="currentColor" stroke-opacity=".35"/>
+                <polyline fill="none" stroke="currentColor" stroke-opacity=".55" stroke-width="2"
+                  points="20,100 50,96 80,98 110,92 140,60 170,52 200,48"/>
+                <line x1="125" y1="10" x2="125" y2="120" stroke="currentColor" stroke-opacity=".35" stroke-dasharray="3 3"/>
+                <text x="128" y="20" font-size="9" fill="currentColor" fill-opacity=".6" font-family="IBM Plex Mono, monospace">treatment</text>
+              </svg>
+            </div>
+          </article>
+
+          <article class="project">
+            <div>
+              <p class="meta">Course project · Year</p>
+              <h3 class="ph">Project title</h3>
+              <p class="ph">Short summary of the project.</p>
+              <dl>
+                <dt>Question</dt><dd class="ph">—</dd>
+                <dt>Data</dt><dd class="ph">—</dd>
+                <dt>Method</dt><dd class="ph">—</dd>
+                <dt>Finding</dt><dd class="ph">—</dd>
+              </dl>
+              <div class="tags"><span class="tag">Python</span><span class="tag">Macro</span></div>
+              <div class="links"><a href="#">Paper →</a><a href="#">Code →</a></div>
+            </div>
+            <div class="figure">Figure or chart<br>images/fig2.png</div>
+          </article>
+
+          <article class="project">
+            <div>
+              <p class="meta">Policy brief · Year</p>
+              <h3 class="ph">Project title</h3>
+              <p class="ph">Short summary of the project.</p>
+              <dl>
+                <dt>Question</dt><dd class="ph">—</dd>
+                <dt>Data</dt><dd class="ph">—</dd>
+                <dt>Method</dt><dd class="ph">—</dd>
+                <dt>Finding</dt><dd class="ph">—</dd>
+              </dl>
+              <div class="tags"><span class="tag">Policy</span><span class="tag">Excel</span></div>
+              <div class="links"><a href="#">Brief →</a></div>
+            </div>
+            <div class="figure">Figure or chart<br>images/fig3.png</div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== 03 WRITING ===================== -->
+    <section id="writing">
+      <div class="wrap">
+        <div class="sec-head">
+          <div class="sec-num">03 / Writing</div>
+          <h2>Essays &amp; briefs</h2>
+        </div>
+        <div class="sec-body">
+          <!-- One <li> per piece. Link the title to a PDF in your repo, e.g. writing/essay1.pdf -->
+          <ul class="writing">
+            <li>
+              <span class="yr">2026</span>
+              <span class="t"><a href="#" class="ph">Essay title</a><small class="ph">One-line description.</small></span>
+              <span class="kind">Essay</span>
+            </li>
+            <li>
+              <span class="yr">2026</span>
+              <span class="t"><a href="#" class="ph">Policy brief title</a><small class="ph">One-line description.</small></span>
+              <span class="kind">Brief</span>
+            </li>
+            <li>
+              <span class="yr">2025</span>
+              <span class="t"><a href="#" class="ph">Paper title</a><small class="ph">One-line description.</small></span>
+              <span class="kind">Paper</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== 04 SKILLS ===================== -->
+    <section id="skills">
+      <div class="wrap">
+        <div class="sec-head">
+          <div class="sec-num">04 / Toolkit</div>
+          <h2>Methods &amp; tools</h2>
+        </div>
+        <div class="sec-body skills">
+          <div class="skill-col">
+            <h3>Econometrics</h3>
+            <ul class="ph">
+              <li>OLS / IV</li>
+              <li>Panel data, fixed effects</li>
+              <li>Difference-in-differences</li>
+              <li>Time series</li>
+            </ul>
+          </div>
+          <div class="skill-col">
+            <h3>Programming</h3>
+            <ul class="ph">
+              <li>Stata</li>
+              <li>R</li>
+              <li>Python (pandas)</li>
+              <li>SQL</li>
+            </ul>
+          </div>
+          <div class="skill-col">
+            <h3>Data &amp; Communication</h3>
+            <ul class="ph">
+              <li>Data collection &amp; cleaning</li>
+              <li>Visualization</li>
+              <li>LaTeX</li>
+              <li>Excel</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== 05 EXPERIENCE ===================== -->
+    <section id="experience">
+      <div class="wrap">
+        <div class="sec-head">
+          <div class="sec-num">05 / Experience</div>
+          <h2>Education &amp; experience</h2>
+        </div>
+        <div class="sec-body">
+          <ul class="timeline">
+            <li>
+              <span class="when">2026 – Present</span>
+              <div>
+                <h4>M.A. Economics</h4>
+                <p class="where ph">[University]</p>
+                <p class="ph">Relevant coursework: Graduate Econometrics, Macroeconomics, …</p>
+              </div>
+            </li>
+            <li>
+              <span class="when">20XX – 2026</span>
+              <div>
+                <h4>B.A./B.S. Economics</h4>
+                <p class="where ph">[University]</p>
+                <p class="ph">Honors, thesis, relevant coursework.</p>
+              </div>
+            </li>
+            <li>
+              <span class="when">20XX – 20XX</span>
+              <div>
+                <h4 class="ph">Role title</h4>
+                <p class="where ph">[Organization]</p>
+                <p class="ph">One or two lines on what you did and the impact.</p>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== CONTACT ===================== -->
+    <section id="contact" class="contact" style="border-bottom:0">
+      <div class="wrap">
+        <p class="eyebrow">06 / Contact</p>
+        <h2>Let's talk economics.</h2>
+        <p class="ph">A line on what you're open to: research assistant roles, collaborations, PhD conversations, analyst positions.</p>
+        <div class="contact-links">
+          <a class="btn primary" href="mailto:you@example.com">Email me</a>
+          <a class="btn ghost" href="https://www.linkedin.com/in/your-handle" target="_blank" rel="noopener">LinkedIn</a>
+          <a class="btn ghost" href="https://github.com/Rodantz18" target="_blank" rel="noopener">GitHub</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <span>© <span id="yr"></span> Rodrigo Antolinez Guzman</span>
+      <a href="#top">Back to top ↑</a>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('yr').textContent = new Date().getFullYear();
+    // Mobile menu
+    const btn = document.querySelector('.menu-btn');
+    const list = document.getElementById('nav-list');
+    btn.addEventListener('click', () => {
+      const open = list.classList.toggle('open');
+      btn.setAttribute('aria-expanded', open);
+    });
+    list.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+      list.classList.remove('open'); btn.setAttribute('aria-expanded', false);
+    }));
+  </script>
+</body>
+</html>
