@@ -82,7 +82,7 @@ nav a:hover { color: var(--ink); }
 .btn.ghost { color: var(--accent); }
 .btn:hover { text-decoration: none; filter: brightness(1.08); }
 
-.stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; margin-top: 64px; border-top: 1px solid var(--rule); }
+.stats { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0; margin-top: 64px; border-top: 1px solid var(--rule); }
 .stat { padding: 20px 20px 0 0; }
 .stat + .stat { padding-left: 20px; border-left: 1px solid var(--rule); }
 .stat b { display: block; font-family: var(--serif); font-size: 32px; font-weight: 500; }
